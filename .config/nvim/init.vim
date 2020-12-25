@@ -17,14 +17,16 @@ call plug#begin()
   Plug 'ap/vim-buftabline'
   Plug 'sainnhe/sonokai'
   Plug 'jnurmine/Zenburn'
+  Plug 'frankier/neovim-colors-solarized-truecolor-only'
 call plug#end()
+colorscheme solarized
+set background=dark
+set termguicolors
 set nu rnu
 set so=81
-colorscheme zenburn
-
 set guicursor=n-v-c-sm:block,i-ci-ve:hor25,r-cr-o:hor20
-
 nnoremap <SPACE>ww :bnext<CR>
+set clipboard+=unnamedplus
 
 "which key
 " Ale
@@ -133,9 +135,8 @@ set updatetime=300
 
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
+" Always show the signcolumn, otherwise it would shift the text each time diagnostics appear/become resolved.  if has("patch-8.1.1564") Recently vim can merge signcolumn and number column into one set signcolumn=number else set signcolumn=yes
 
-" Always show the signcolumn, otherwise it would shift the text each time
-" diagnostics appear/become resolved.
 if has("patch-8.1.1564")
   " Recently vim can merge signcolumn and number column into one
   set signcolumn=number
@@ -279,3 +280,30 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
+" Commenter
+" Create default mappings
+let g:NERDCreateDefaultMappings = 1
+
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
+
+" Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
+
+" Set a language to use its alternate delimiters by default
+let g:NERDAltDelims_java = 1
+
+" Add your own custom formats or override the defaults
+let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
+
+" Allow commenting and inverting empty lines (useful when commenting a region)
+let g:NERDCommentEmptyLines = 1
+
+" Enable trimming of trailing whitespace when uncommenting
+let g:NERDTrimTrailingWhitespace = 1
+
+" Enable NERDCommenterToggle to check all selected lines is commented or not 
+let g:NERDToggleCheckAllLines = 1
