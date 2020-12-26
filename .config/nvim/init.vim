@@ -5,7 +5,6 @@ call plug#begin()
   Plug 'itchyny/lightline.vim' 
   Plug 'joshdick/onedark.vim'
   Plug 'sheerun/vim-polyglot'
-  Plug 'sbdchd/neoformat'
   Plug 'mhinz/vim-startify'
   Plug 'voldikss/vim-floaterm'
   Plug 'ryanoasis/vim-devicons'
@@ -18,23 +17,31 @@ call plug#begin()
   Plug 'sainnhe/sonokai'
   Plug 'jnurmine/Zenburn'
   Plug 'frankier/neovim-colors-solarized-truecolor-only'
+  Plug 'sbdchd/neoformat'
+  Plug 'jceb/vim-orgmode'
 call plug#end()
-colorscheme solarized
+colorscheme onedark
 set background=dark
-set termguicolors
 set nu rnu
 set so=81
 set guicursor=n-v-c-sm:block,i-ci-ve:hor25,r-cr-o:hor20
 nnoremap <SPACE>ww :bnext<CR>
 set clipboard+=unnamedplus
 
+"FOMART
+augroup fmt
+  autocmd!
+  autocmd BufWritePre * undojoin | Neoformat prettier
+augroup END
+"gui
+set guifont=JetBrainsMonoNerdFont:h19
 "which key
 " Ale
 let g:ale_sign_error = "\uf05e"
 let g:ale_sign_warning = "\uf071"
 
 "Term
-nmap <Space>' :FloatermNew --height=0.6 --width=0.4 --wintype=floating --name=floaterm1 --position=center <CR>
+nmap <Space>' :FloatermNew --height=0.8 --width=0.6 --wintype=floating --name=floaterm1 --position=center <CR>
 "Explorer
 let g:coc_explorer_global_presets = {
 \   '.vim': {
@@ -78,11 +85,9 @@ let g:coc_explorer_global_presets = {
 " Use preset argument to open it
 nmap <space>f :CocCommand explorer --preset simplify<CR>
 
-"Neoformat
-autocmd BufWritePre *.js Neoformat
 "lightline
 let g:lightline = { 
-       \ 'colorscheme': 'seoul256',
+       \ 'colorscheme': 'onedark',
        \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
        \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" },
        \ 'component_function': {
