@@ -1,4 +1,6 @@
 let g:ale_disable_lsp = 1
+set foldmethod=marker
+"{{{Plugins
 call plug#begin()
   Plug 'neoclide/coc.nvim'
   Plug 'dense-analysis/ale'
@@ -19,30 +21,39 @@ call plug#begin()
   Plug 'frankier/neovim-colors-solarized-truecolor-only'
   Plug 'sbdchd/neoformat'
   Plug 'jceb/vim-orgmode'
+  Plug 'liuchengxu/vim-which-key'
 call plug#end()
-colorscheme onedark
+"}}}
+"{{{Basic Config
+"basic config
+nnoremap <silent> <Space> :WhichKey '<Space>'<CR>
+colorscheme zenburn
 set background=dark
 set nu rnu
 set so=81
 set guicursor=n-v-c-sm:block,i-ci-ve:hor25,r-cr-o:hor20
 nnoremap <SPACE>ww :bnext<CR>
 set clipboard+=unnamedplus
-
-"FOMART
-augroup fmt
-  autocmd!
-  autocmd BufWritePre * undojoin | Neoformat prettier
-augroup END
 "gui
 set guifont=JetBrainsMonoNerdFont:h19
-"which key
-" Ale
+"}}}
+"{{{Key mappings
+"Neoformat
+nmap <silent> <SPACE>fj :Neoformat prettier<CR>
+"Term
+nmap <silent> <Space>' :FloatermNew --height=0.8 --width=0.6 --wintype=floating --name=floaterm1 --position=center <CR>
+"Explorer
+nmap <space>e :CocCommand explorer --preset simplify<CR>
+"}}}
+"{{{Which Key Config
+nnoremap <silent> <Space> :WhichKey '<Space>'<CR>
+nnoremap <silent> <leader> :WhichKey '<leader>'<CR>
+"}}}
+"{{{ Ale
 let g:ale_sign_error = "\uf05e"
 let g:ale_sign_warning = "\uf071"
-
-"Term
-nmap <Space>' :FloatermNew --height=0.8 --width=0.6 --wintype=floating --name=floaterm1 --position=center <CR>
-"Explorer
+"}}}
+"{{{Coc Explorer
 let g:coc_explorer_global_presets = {
 \   '.vim': {
 \     'root-uri': '~/.vim',
@@ -82,12 +93,10 @@ let g:coc_explorer_global_presets = {
 \     'sources': [{'name': 'buffer', 'expand': v:true}]
 \   },
 \}
-" Use preset argument to open it
-nmap <space>f :CocCommand explorer --preset simplify<CR>
-
-"lightline
+"}}}
+"{{{lightline
 let g:lightline = { 
-       \ 'colorscheme': 'onedark',
+       \ 'colorscheme': 'seoul256',
        \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
        \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" },
        \ 'component_function': {
@@ -122,7 +131,8 @@ let g:lightline#ale#indicator_infos = "\uf129"
 let g:lightline#ale#indicator_warnings = "\uf071"
 let g:lightline#ale#indicator_errors = "\uf05e"
 let g:lightline#ale#indicator_ok = "\uf00c"
-"COC COMPLETITION
+"}}}
+"{{{COC COMPLETITION
 
 " TextEdit might fail if hidden is not set.
 set hidden
@@ -177,14 +187,6 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-" GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
 
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -203,11 +205,7 @@ endfunction
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Symbol renaming.
-nmap <leader>rn <Plug>(coc-rename)
 
-" Formatting selected code.
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
 
 augroup mygroup
   autocmd!
@@ -220,12 +218,9 @@ augroup end
 " Applying codeAction to the selected region.
 " Example: `<leader>aap` for current paragraph
 xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
 
 " Remap keys for applying codeAction to the current buffer.
-nmap <leader>ac  <Plug>(coc-codeaction)
 " Apply AutoFix to problem on the current line.
-nmap <leader>qf  <Plug>(coc-fix-current)
 
 " Map function and class text objects
 " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
@@ -250,8 +245,6 @@ endif
 
 " Use CTRL-S for selections ranges.
 " Requires 'textDocument/selectionRange' support of language server.
-nmap <silent> <C-s> <Plug>(coc-range-select)
-xmap <silent> <C-s> <Plug>(coc-range-select)
 
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocAction('format')
@@ -269,23 +262,17 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Mappings for CoCList
 " Show all diagnostics.
-nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
 " Manage extensions.
-nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
 " Show commands.
-nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
 " Find symbol of current document.
-nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
 " Search workspace symbols.
-nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
 " Do default action for next item.
 nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 " Do default action for previous item.
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
-nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
-
-" Commenter
+"}}}
+"{{{ Commenter
 " Create default mappings
 let g:NERDCreateDefaultMappings = 1
 
@@ -312,3 +299,4 @@ let g:NERDTrimTrailingWhitespace = 1
 
 " Enable NERDCommenterToggle to check all selected lines is commented or not 
 let g:NERDToggleCheckAllLines = 1
+"}}}
