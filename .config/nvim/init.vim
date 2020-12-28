@@ -15,20 +15,21 @@ call plug#begin()
   Plug 'jiangmiao/auto-pairs'
   Plug 'preservim/nerdcommenter'
   Plug 'morhetz/gruvbox'
-  Plug 'ap/vim-buftabline'
   Plug 'sainnhe/sonokai'
   Plug 'jnurmine/Zenburn'
   Plug 'frankier/neovim-colors-solarized-truecolor-only'
   Plug 'sbdchd/neoformat'
   Plug 'jceb/vim-orgmode'
   Plug 'liuchengxu/vim-which-key'
+  Plug 'mengelbrecht/lightline-bufferline'
+  Plug 'AlessandroYorba/Sierra'
 call plug#end()
 "}}}
 "{{{Basic Config
 "basic config
 nnoremap <silent> <Space> :WhichKey '<Space>'<CR>
-colorscheme zenburn
 set background=dark
+colorscheme sierra
 set nu rnu
 set so=81
 set guicursor=n-v-c-sm:block,i-ci-ve:hor25,r-cr-o:hor20
@@ -44,6 +45,9 @@ nmap <silent> <SPACE>fj :Neoformat prettier<CR>
 nmap <silent> <Space>' :FloatermNew --height=0.8 --width=0.6 --wintype=floating --name=floaterm1 --position=center <CR>
 "Explorer
 nmap <space>e :CocCommand explorer --preset simplify<CR>
+"tabs
+nmap <silent> <space>h :bprevious<CR>
+nmap <silent> <space>l :bnext<CR>
 "}}}
 "{{{Which Key Config
 nnoremap <silent> <Space> :WhichKey '<Space>'<CR>
@@ -96,7 +100,7 @@ let g:coc_explorer_global_presets = {
 "}}}
 "{{{lightline
 let g:lightline = { 
-       \ 'colorscheme': 'seoul256',
+       \ 'colorscheme': 'onedark',
        \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
        \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" },
        \ 'component_function': {
@@ -108,16 +112,24 @@ let g:lightline.component_expand = {
       \  'linter_checking': 'lightline#ale#checking',
       \  'linter_infos': 'lightline#ale#infos',
       \  'linter_warnings': 'lightline#ale#warnings',
+      \  'buffers': 'lightline#bufferline#buffers',
       \  'linter_errors': 'lightline#ale#errors',
       \  'linter_ok': 'lightline#ale#ok',
       \ }
 let g:lightline.component_type = {
       \     'linter_checking': 'right',
+      \     'buffers': 'tabsel',
       \     'linter_infos': 'right',
       \     'linter_warnings': 'warning',
       \     'linter_errors': 'error',
       \     'linter_ok': 'right',
       \ }
+set showtabline=2
+
+let g:lightline.tabline = {
+  \ 'left' : [['buffers']],
+  \ 'right' : [['bufnum']]
+  \ }
 function! MyFiletype()
   return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
 endfunction
