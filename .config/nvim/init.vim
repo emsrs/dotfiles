@@ -18,7 +18,6 @@ call plug#begin()
   Plug 'sainnhe/sonokai'
   Plug 'jnurmine/Zenburn'
   Plug 'frankier/neovim-colors-solarized-truecolor-only'
-  Plug 'sbdchd/neoformat'
   Plug 'jceb/vim-orgmode'
   Plug 'liuchengxu/vim-which-key'
   Plug 'mengelbrecht/lightline-bufferline'
@@ -28,19 +27,18 @@ call plug#end()
 "{{{Basic Config
 "basic config
 nnoremap <silent> <Space> :WhichKey '<Space>'<CR>
-set background=dark
-colorscheme sierra
+set background=light
+colorscheme solarized
 set nu rnu
 set so=81
-set guicursor=n-v-c-sm:block,i-ci-ve:hor25,r-cr-o:hor20
+set guicursor=n-v-c-sm:block,i-ci-ve:hor10,r-cr-o:hor20
 nnoremap <SPACE>ww :bnext<CR>
 set clipboard+=unnamedplus
 "gui
-set guifont=JetBrainsMonoNerdFont:h19
+set guifont=OperatorMonoNerdFontMono:h20
+
 "}}}
 "{{{Key mappings
-"Neoformat
-nmap <silent> <SPACE>fj :Neoformat prettier<CR>
 "Term
 nmap <silent> <Space>' :FloatermNew --height=0.8 --width=0.6 --wintype=floating --name=floaterm1 --position=center <CR>
 "Explorer
@@ -48,6 +46,11 @@ nmap <space>e :CocCommand explorer --preset simplify<CR>
 "tabs
 nmap <silent> <space>h :bprevious<CR>
 nmap <silent> <space>l :bnext<CR>
+"Plug
+nmap <silent> <space>pi :PlugInstall<CR>
+nmap <silent> <space>pc :PlugClean<CR>
+"Format ALE
+
 "}}}
 "{{{Which Key Config
 nnoremap <silent> <Space> :WhichKey '<Space>'<CR>
@@ -56,8 +59,15 @@ nnoremap <silent> <leader> :WhichKey '<leader>'<CR>
 "{{{ Ale
 let g:ale_sign_error = "\uf05e"
 let g:ale_sign_warning = "\uf071"
+"Format
+let g:ale_fix_on_save = 1
+let g:ale_fixers = {
+  \   'javascript': ['prettier'],
+  \   'css': ['prettier'],
+  \ }
 "}}}
 "{{{Coc Explorer
+
 let g:coc_explorer_global_presets = {
 \   '.vim': {
 \     'root-uri': '~/.vim',
@@ -98,11 +108,12 @@ let g:coc_explorer_global_presets = {
 \   },
 \}
 "}}}
+"
 "{{{lightline
 let g:lightline = { 
-       \ 'colorscheme': 'onedark',
-       \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
-       \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" },
+       \ 'colorscheme': 'solarized',
+       \ 'separator': { 'left': "\uE0B8", 'right': "\" },
+       \ 'subseparator': { 'left': "\uE0B9", 'right': "\ue0b3" },
        \ 'component_function': {
        \   'filetype': 'MyFiletype',
        \   'fileformat': 'MyFileformat',
@@ -311,4 +322,7 @@ let g:NERDTrimTrailingWhitespace = 1
 
 " Enable NERDCommenterToggle to check all selected lines is commented or not 
 let g:NERDToggleCheckAllLines = 1
+"}}}
+"{{{ Statify
+let g:startify_bookmarks = [ '~/projects', '~/dwm-ipc/', '~/.config/nvim/init.vim', '~/.config/picom.conf', '~/.config/polybar/config' ]
 "}}}
