@@ -15,24 +15,29 @@
 ;   The README contains a lot of information
 ;
 ;==========================================================
+
 [colors]
-;background = ${xrdb:color0:#222}
 background = #f0f0f0
 background-alt = #f0f0f0
 ;foreground = ${xrdb:color7:#222}
-foreground = #586e75
+foreground = #333333
 foreground-alt = #555
-primary = #e6e0ce
+primary = #f0f0f0
 secondary = #e60053
 alert = #bd2c40
+underline = #000000
+tagSelectedFG = #f0f0f0
+tagVisibleFG= #586e75
+tagSelectedBG = #554466
 
-[bar/mybar]
+
+[bar/basedBar]
 ;monitor = ${env:MONITOR:HDMI-1}
-width = 30%
-height = 27
-offset-x = 35.4%
+width = 25%
+height = 20
+offset-x = 38%
 ;offset-y = 1%
-radius = 14
+radius = 9.0
 fixed-center = false
 
 background = ${colors.background}
@@ -42,7 +47,7 @@ line-size = 3
 line-color = #f00
 
 border-size = 0
-border-color = #000
+border-color = #00000000
 
 padding-left = 0
 padding-right = 2
@@ -50,18 +55,28 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = DankMono Nerd Font Mono:pixelsize=12;1
+font-0 = SauceCodePro Nerd Font:pixelsize=9;1
 font-1 = Font Awesome Free:fontformat=truetype:size=8:antialias=false;0
-font-2 = FiraCode Nerd Font:pixelsize=10;1
+font-2 = siji:pixelsize=10;1
 
 modules-left = dwm
 modules-center = mpd
-modules-right = pulseaudio date 
+modules-right = date
 
 tray-position = right
 tray-padding = 2
+;tray-background = #0063ff
 
-override-redirect = false
+;wm-restack = bspwm
+;wm-restack = i3
+
+;override-redirect = true
+
+;scroll-up = bspwm-desknext
+;scroll-down = bspwm-deskprev
+
+;scroll-up = i3wm-wsnext
+;scroll-down = i3wm-wsprev
 
 cursor-click = pointer
 cursor-scroll = ns-resize
@@ -96,9 +111,67 @@ label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
 label-unmounted = %mountpoint% not mounted
 label-unmounted-foreground = ${colors.foreground-alt}
 
+[module/bspwm]
+type = internal/bspwm
+
+label-focused = %index%
+label-focused-background = ${colors.background-alt}
+label-focused-underline= ${colors.primary}
+label-focused-padding = 2
+
+label-occupied = %index%
+label-occupied-padding = 2
+
+label-urgent = %index%!
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 2
+
+label-empty = %index%
+label-empty-foreground = ${colors.foreground-alt}
+label-empty-padding = 2
+
+; Separator in between workspaces
+; label-separator = |
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = false
+
+; Only show workspaces on the same output as the bar
+;pin-workspaces = true
+
+label-mode-padding = 2
+label-mode-foreground = #000
+label-mode-background = ${colors.primary}
+
+; focused = Active workspace on focused monitor
+label-focused = %index%
+label-focused-background = ${colors.background-alt}
+label-focused-underline= ${colors.primary}
+label-focused-padding = 2
+
+; unfocused = Inactive workspace on any monitor
+label-unfocused = %index%
+label-unfocused-padding = 2
+
+; visible = Active workspace on unfocused monitor
+label-visible = %index%
+label-visible-background = ${self.label-focused-background}
+label-visible-underline = ${self.label-focused-underline}
+label-visible-padding = ${self.label-focused-padding}
+
+; urgent = Workspace with urgency hint set
+label-urgent = %index%
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 2
+
+; Separator in between workspaces
+; label-separator = |
+
 [module/dwm]
 type = internal/dwm
-;format = <label-tags> <label-layout> <label-floating> <label-title>
 format = <label-tags>
 ; Path to dwm socket (default: /tmp/dwm.sock)
 ; socket-path = /tmp/dwm.sock
@@ -126,7 +199,8 @@ layout-scroll-reverse = false
 secondary-layout-symbol = [M]
 
 ; Separator in between shown tags
-label-separator = 
+; label-separator = |
+
 ; Title of currently focused window
 ; Available tokens:
 ;   %title%
@@ -152,9 +226,9 @@ label-floating = F
 
 ; focused = Selected tag on focused monitor
 label-focused = %name%
-label-focused-foreground = #000
-label-focused-background = ${colors.background-alt}
-label-focused-underline= #d0d0d0
+label-focused-background = ${colors.tagSelectedBG}
+label-focused-foreground = ${colors.tagSelectedFG}
+label-focused-underline= ${colors.underline}
 label-focused-padding = 2
 
 ; unfocused = Unselected tag on unselected monitor
@@ -163,8 +237,8 @@ label-unfocused-padding = 2
 
 ; visible = Unselected tag, but occupied tag on any monitor
 label-visible = %name%
-label-visible-background = ${self.label-focused-background}
-label-visible-underline = #d0d0d0
+label-visible-background = ${colors.tagVisibleBG}
+label-visible-underline = ${self.label-focused-underline}
 label-visible-padding = ${self.label-focused-padding}
 
 ; urgent = Unselected tag with window that has urgency hint set
@@ -175,7 +249,7 @@ label-urgent-padding = 2
 ; empty = Unselected and unoccupied tag
 ; This can be set to an empty string to hide empty tags
 label-empty = %name%
-label-empty-background = ${colors.background}
+label-empty-background = ${colors.primary}
 label-empty-padding = 2
 
 [module/mpd]
@@ -231,7 +305,7 @@ label = %percentage_used%%
 
 [module/wlan]
 type = internal/network
-interface = net1
+interface = 
 interval = 3.0
 
 format-connected = <ramp-signal> <label-connected>
@@ -253,7 +327,7 @@ ramp-signal-foreground = ${colors.foreground-alt}
 
 [module/eth]
 type = internal/network
-interface = eth0
+interface = 
 interval = 3.0
 
 format-connected-underline = #55aa55
@@ -277,8 +351,8 @@ date-alt = " %Y-%m-%d"
 time = %H:%M
 time-alt = %H:%M:%S
 
-format-prefix = 
-format-prefix-foreground = ${colors.foreground}
+format-prefix = 
+format-prefix-foreground = ${colors.foreground-alt}
 ;format-underline = #0a6cf5
 
 label = %date% %time%
@@ -286,12 +360,11 @@ label = %date% %time%
 [module/pulseaudio]
 type = internal/pulseaudio
 
-;format-volume = <label-volume> <bar-volume>
-format-volume = <label-volume>
-label-volume =  %percentage%%
+format-volume = <label-volume> <bar-volume>
+label-volume = VOL %percentage%%
 label-volume-foreground = ${root.foreground}
 
-label-muted = 
+label-muted = 🔇 muted
 label-muted-foreground = #666
 
 bar-volume-width = 10
@@ -433,3 +506,83 @@ margin-top = 5
 margin-bottom = 5
 
 ; vim:ft=dosini
+[module/windowTitle]
+type = internal/dwm
+format = <label-title>
+; Path to dwm socket (default: /tmp/dwm.sock)
+; socket-path = /tmp/dwm.sock
+
+; Left-click to view tag, right-click to toggle tag view
+enable-tags-click = false
+; Scroll to cycle between available tags
+enable-tags-scroll = false
+; If true and enable-tags-scroll = true, scrolling will view all tags regardless if occupied
+tags-scroll-empty = false
+; If true and enable-tags-scroll = true, scrolling will cycle through tags backwards
+tags-scroll-reverse = false
+; If true and enable-tags-scroll = true, wrap active tag when scrolling
+tags-scroll-wrap = false
+; Left-click to set secondary layout, right-click to switch to previous layout
+enable-layout-click = false
+; Scroll to cycle between available layouts
+enable-layout-scroll = false
+; Wrap when scrolling and reaching begining/end of layouts
+layout-scroll-wrap = false
+; Reverse scroll direction
+layout-scroll-reverse = false
+
+; If enable-layout-click = true, clicking the layout symbol will switch to this layout
+secondary-layout-symbol = [M]
+
+; Separator in between shown tags
+; label-separator = |
+
+; Title of currently focused window
+; Available tokens:
+;   %title%
+label-title = %title%
+label-title-padding = 2
+label-title-forefround = ${colors.primary}
+label-title-maxlen = 30
+
+; Symbol of current layout
+; Available tokens:
+;   %symbol%
+label-layout = %symbol%
+label-layout-padding = 2
+label-layout-foreground = #000
+label-layout-background = ${colors.primary}
+
+; Text to show when currently focused window is floating
+label-floating = F
+
+; States: focused, unfocused, visible, urgent, empty
+; Available tokens:
+;   %name%
+
+; focused = Selected tag on focused monitor
+label-focused = %name%
+label-focused-background = ${colors.tagSelectedBG}
+label-focused-underline= ${colors.primary}
+label-focused-padding = 2
+
+; unfocused = Unselected tag on unselected monitor
+label-unfocused = %name%
+label-unfocused-padding = 2
+
+; visible = Unselected tag, but occupied tag on any monitor
+label-visible = %name%
+label-visible-background = ${self.label-focused-background}
+label-visible-underline = ${self.label-focused-underline}
+label-visible-padding = ${self.label-focused-padding}
+
+; urgent = Unselected tag with window that has urgency hint set
+label-urgent = %name%
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 2
+
+; empty = Unselected and unoccupied tag
+; This can be set to an empty string to hide empty tags
+label-empty = %name%
+label-empty-background = ${colors.primary}
+label-empty-padding = 2

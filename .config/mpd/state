@@ -1,35 +1,29 @@
-sw_volume: 100
-audio_device_state:1:My Pulse Output
-state: pause
-current: 5
-time: 52.931000
+sw_volume: 80
+audio_device_state:1:ALSA sound card
+state: play
+current: 10
+time: 39.361000
 random: 0
 repeat: 0
 single: 0
 consume: 0
-crossfade: 10
+crossfade: 0
 mixrampdb: 0.000000
 mixrampdelay: -1.000000
 playlist_begin
-0:TEKNEIN - Die Massen Pt2 (Destiny was not mistaken).mp3
-1:TEKNEIN - Reichsretter.mp3
-2:TEKNEIN - Nas Waltz.mp3
-3:TEKNEIN - Teufelslied.mp3
-4:TEKNEIN - The wrong people.mp3
-5:TEKNEIN - On an earth without sunshine.mp3
-6:TEKNEIN - Deutschland erwacht (CD version).mp3
-7:TEKNEIN - Viktoria.mp3
-8:TEKNEIN - Rally the Youth.mp3
-9:TEKNEIN - Get with the Pogrom.mp3
-10:TEKNEIN - Julys (CD version).mp3
-11:TEKNEIN - Arise.mp3
-12:TEKNEIN - Reject degeneracy.mp3
-13:TEKNEIN - Erika.mp3
-14:TEKNEIN - Reichsretter Pt2.mp3
-15:TEKNEIN - Castle in the Sand (extended).mp3
-16:TEKNEIN - Das Boots (were made for stomping).mp3
-17:TEKNEIN - Die Fahne hoch.mp3
-18:TEKNEIN - Führer.mp3
-19:TEKNEIN - Intro (So Many...).mp3
-20:TEKNEIN - Die Massen (wherever you find them).mp3
+0:TEKNEIN - Intro (So Many...).mp3
+1:TEKNEIN - Die Massen (wherever you find them).mp3
+2:TEKNEIN - Deutschland erwacht (CD version).mp3
+3:TEKNEIN - Nas Waltz.mp3
+4:TEKNEIN - Teufelslied.mp3
+5:TEKNEIN - The wrong people.mp3
+6:TEKNEIN - On an earth without sunshine.mp3
+7:TEKNEIN - Get with the Pogrom.mp3
+8:TEKNEIN - Führer.mp3
+9:TEKNEIN - Die Massen Pt2 (Destiny was not mistaken).mp3
+10:TEKNEIN - Viktoria.mp3
+11:TEKNEIN - Rally the Youth.mp3
+12:TEKNEIN - Reichsretter.mp3
+13:TEKNEIN - Julys (CD version).mp3
+14:TEKNEIN - Die Fahne hoch.mp3
 playlist_end
