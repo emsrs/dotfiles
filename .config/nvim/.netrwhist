@@ -1,12 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =7
-let g:netrw_dirhist_7='/home/deluxe/Documents/twenty-five-clock/src'
-let g:netrw_dirhist_6='/home/deluxe/Documents/twenty-five-clock'
-let g:netrw_dirhist_5='/home/deluxe/Documents'
-let g:netrw_dirhist_4='/home/deluxe/Documents/twenty-five-clock/src'
-let g:netrw_dirhist_3='/home/deluxe/Documents/twenty-five-clock'
-let g:netrw_dirhist_2='/home/deluxe/Documents'
-let g:netrw_dirhist_1='/home/deluxe/Documents/java-script-calculator/src'
-let g:netrw_dirhist_0='/home/deluxe/Documents/java-script-calculator'
-let g:netrw_dirhist_9='/home/deluxe/Documents'
-let g:netrw_dirhist_8='/home/deluxe/Documents/jscalc'
+let g:netrw_dirhistcnt =3
+let g:netrw_dirhist_3='/home/deluxe/.config/mpd'
+let g:netrw_dirhist_2='/home/deluxe/.config/rofi'
+let g:netrw_dirhist_1='/home/deluxe/dwm-ipc'

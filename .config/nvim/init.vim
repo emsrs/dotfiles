@@ -21,14 +21,17 @@ call plug#begin()
   Plug 'jceb/vim-orgmode'
   Plug 'liuchengxu/vim-which-key'
   Plug 'mengelbrecht/lightline-bufferline'
-  Plug 'AlessandroYorba/Sierra'
+  Plug 'kaicataldo/material.vim', { 'branch': 'main' }
+  Plug 'ayu-theme/ayu-vim'
 call plug#end()
 "}}}
 "{{{Basic Config
 "basic config
 nnoremap <silent> <Space> :WhichKey '<Space>'<CR>
+set termguicolors
+let ayucolor="light"
+colorscheme ayu
 set background=light
-colorscheme solarized
 set nu rnu
 set so=81
 set guicursor=n-v-c-sm:block,i-ci-ve:hor10,r-cr-o:hor20
@@ -64,6 +67,8 @@ let g:ale_fix_on_save = 1
 let g:ale_fixers = {
   \   'javascript': ['prettier'],
   \   'css': ['prettier'],
+  \   'json': ['prettier'],
+  \   'html': ['prettier'],
   \ }
 "}}}
 "{{{Coc Explorer
@@ -111,9 +116,9 @@ let g:coc_explorer_global_presets = {
 "
 "{{{lightline
 let g:lightline = { 
-       \ 'colorscheme': 'solarized',
+       \ 'colorscheme': 'one',
        \ 'separator': { 'left': "\uE0B8", 'right': "\" },
-       \ 'subseparator': { 'left': "\uE0B9", 'right': "\ue0b3" },
+       \ 'subseparator': { 'left': "", 'right': "\ue0b3" },
        \ 'component_function': {
        \   'filetype': 'MyFiletype',
        \   'fileformat': 'MyFileformat',
@@ -165,7 +170,7 @@ set nobackup
 set nowritebackup
 
 " Give more space for displaying messages.
-set cmdheight=2
+set cmdheight=1
 
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
