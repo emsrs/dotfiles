@@ -1,5 +1,5 @@
-static char normfgcolor[] = "#81a1c1";
-static char normbgcolor[] = "#2e3440";
+static char normfgcolor[] = "#646464";
+static char normbgcolor[] = "#fafafa";
 static char normbordercolor[] = "#665C54";
 static char normfloatcolor[] = "#3A3A3A";
 static char selfgcolor[] = "#e5e9f0";
@@ -7,23 +7,23 @@ static char selbgcolor[] = "#322F2E";
 static char selbordercolor[] = "#CC5E50";
 static char selfloatcolor[] = "#FABD2F";
 
-static char titlenormfgcolor[] = "#D3869B";
-static char titlenormbgcolor[] = "#2e3440";
+static char titlenormfgcolor[] = "#646464";
+static char titlenormbgcolor[] = "#fafafa";
 static char titlenormbordercolor[] = "#444444";
 static char titlenormfloatcolor[] = "#db8fd9";
 
-static char titleselfgcolor[] = "#e5e9f0";
-static char titleselbgcolor[] = "#2e3440";
+static char titleselfgcolor[] = "#646464";
+static char titleselbgcolor[] = "#fafafa";
 static char titleselbordercolor[] = "#005577";
 static char titleselfloatcolor[] = "#005577";
 
-static char tagsnormfgcolor[] = "#e5e9f0";
-static char tagsnormbgcolor[] = "#2e3440";
+static char tagsnormfgcolor[] = "#646464";
+static char tagsnormbgcolor[] = "#fafafa";
 static char tagsnormbordercolor[] = "#444444";
 static char tagsnormfloatcolor[] = "#db8fd9";
 
-static char tagsselfgcolor[] = "#88c0d0";
-static char tagsselbgcolor[] = "#3b4252";
+static char tagsselfgcolor[] = "#f0f0f0";
+static char tagsselbgcolor[] = "#fd6d11";
 static char tagsselbordercolor[] = "#FABD2F";
 static char tagsselfloatcolor[] = "#FABD2F";
 

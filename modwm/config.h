@@ -93,7 +93,7 @@ static void (*bartabmonfns[])(Monitor *) = {NULL /* , customlayoutfn */};
 static const char font[] = "monospace 14";
 #else
 static const char *fonts[] = {"siji:pixelsize=14",
-                              "JetBrains Mono:pixelsize=14"};
+                              "MonoLisa-Medium:pixelsize=14"};
 #endif // BAR_PANGO_PATCH
 static const char dmenufont[] = "JetBrains Mono:size=14";
 
@@ -403,8 +403,7 @@ static const Rule rules[] = {
      *	_NET_WM_WINDOW_TYPE(ATOM) = wintype
      */
     RULE(.class = "feh", .isfloating = 1,
-         .iscentered = 1) RULE(.class = "TelegramDesktop",
-                               .isfloating = 1) RULE(.wintype = WTYPE "DIALOG",
+         .iscentered = 1)  RULE(.wintype = WTYPE "DIALOG",
                                                      .isfloating = 0)
         RULE(.wintype = WTYPE "UTILITY",
              .isfloating = 0) RULE(.wintype = WTYPE "TOOLBAR",
@@ -460,8 +459,8 @@ static const Rule rules[] = {
                                                  "op",
                                              .monitor =
                                                  0)
-                                            RULE(.title = "telegramtui",
-                                                 .monitor = 0)
+                                            RULE(.title = "Media viewer",
+                                                 .isfloating = 1)
                                                 RULE(.class = "Gcolor2",
                                                      .tags =
                                                          0,
