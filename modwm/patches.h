@@ -155,7 +155,7 @@
  * when including this patch.
  * https://dwm.suckless.org/patches/alpha/
  */
-#define BAR_ALPHA_PATCH 0  
+#define BAR_ALPHA_PATCH 1  
 
 /* This patch introduces alternative tags which can be switched on the fly for the
  * sole purpose of providing visual aid.
@@ -243,7 +243,7 @@
  * and the bar will now overlay the display.
  * http://dwm.suckless.org/patches/holdbar/
  */
-#define BAR_HOLDBAR_PATCH 0
+#define BAR_HOLDBAR_PATCH 1
 
 /* Sometimes dwm crashes when it cannot render some glyphs in window titles (usually emoji).
  * This patch is essentially a hack to ignore any errors when drawing text on the status bar.
@@ -255,7 +255,7 @@
 /* This patch adds vertical and horizontal space between the statusbar and the edge of the screen.
  * https://dwm.suckless.org/patches/barpadding/
  */
-#define BAR_PADDING_PATCH 0 
+#define BAR_PADDING_PATCH 1 
 
 /* This patch adds simple markup for status messages using pango markup.
  * This depends on the pango library v1.44 or greater.
@@ -655,7 +655,7 @@
 /* This controls whether or not to also store bar position on a per
  * tag basis, or leave it as one bar per monitor.
  */
-#define PERTAGBAR_PATCH 1
+#define PERTAGBAR_PATCH 0
 
 /* This patch provides a way to move clients up and down inside the client list.
  * https://dwm.suckless.org/patches/push/

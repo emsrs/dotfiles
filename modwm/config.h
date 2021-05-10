@@ -27,9 +27,9 @@ static const int swallowfloating =
 static const unsigned int gappih = 10; /* horiz inner gap between windows */
 static const unsigned int gappiv = 10; /* vert inner gap between windows */
 static const unsigned int gappoh =
-    10; /* horiz outer gap between windows and screen edge */
+    60; /* horiz outer gap between windows and screen edge */
 static const unsigned int gappov =
-    10; /* vert outer gap between windows and screen edge */
+    80; /* vert outer gap between windows and screen edge */
 static const int smartgaps =
     0; /* 1 means no outer gap when there is only one window */
 #endif // VANITYGAPS_PATCH
@@ -42,16 +42,15 @@ static const char localshare[] = ".local/share";
 #if BAR_HOLDBAR_PATCH
 static const int showbar = 0; /* 0 means no bar */
 #else
-static const int showbar = 1;           /* 0 means no bar */
+static const int showbar = 0;           /* 0 means no bar */
 #endif                       // BAR_HOLDBAR_PATCH
 static const int topbar = 0; /* 0 means bottom bar */
 #if BAR_HEIGHT_PATCH
-static const int bar_height =
-    0; /* 0 means derive from font, >= 1 explicit height */
+static const int bar_height = 220; /* 0 means derive from font, >= 1 explicit height */
 #endif // BAR_HEIGHT_PATCH
 #if BAR_PADDING_PATCH
-static const int vertpad = 10; /* vertical padding of bar */
-static const int sidepad = 25; /* horizontal padding of bar */
+static const int vertpad = 0; /* vertical padding of bar */
+static const int sidepad = 400; /* horizontal padding of bar */
 #endif                         // BAR_PADDING_PATCH
 #if FOCUSONCLICK_PATCH
 static const int focusonwheel = 0;
@@ -61,7 +60,7 @@ static int floatposgrid_x = 5; /* float grid columns */
 static int floatposgrid_y = 5; /* float grid rows */
 #endif                         // FLOATPOS_PATCH
 #if BAR_STATUSPADDING_PATCH
-static const int horizpadbar = 0; /* horizontal padding for statusbar */
+static const int horizpadbar = 20; /* horizontal padding for statusbar */
 static const int vertpadbar = 3;  /* vertical padding for statusbar */
 #endif                            // BAR_STATUSPADDING_PATCH
 #if BAR_STATUSBUTTON_PATCH
@@ -90,12 +89,12 @@ static void (*bartabmonfns[])(Monitor *) = {monocle /* , customlayoutfn */};
 static void (*bartabmonfns[])(Monitor *) = {NULL /* , customlayoutfn */};
 #endif // BAR_TABGROUPS_PATCH
 #if BAR_PANGO_PATCH
-static const char font[] = "monospace 14";
+static const char font[] = "monospace 12";
 #else
-static const char *fonts[] = {"siji:pixelsize=14",
-                              "MonoLisa-Medium:pixelsize=14"};
+static const char *fonts[] = {"siji:pixelsize=12",
+                              "MonoLisa-Medium:pixelsize=12"};
 #endif // BAR_PANGO_PATCH
-static const char dmenufont[] = "JetBrains Mono:size=14";
+static const char dmenufont[] = "MonoLisa-Medium :size=14";
 
 #if BAR_FLEXWINTITLE_PATCH
 static char c000000[] = "#000000"; // placeholder value
@@ -140,7 +139,7 @@ static char selfloatbgcolor[] = "#117799";
 #endif // BAR_FLEXWINTITLE_PATCH
 
 #if BAR_ALPHA_PATCH
-static const unsigned int baralpha = 0xee;
+static const unsigned int baralpha = 0x05;
 static const unsigned int borderalpha = OPAQUE;
 static const unsigned int alphas[][3] = {
     /*                       fg      bg        border     */
@@ -358,8 +357,8 @@ static Sp scratchpads[] = {
  * patches.
  */
 static char *tagicons[][NUMTAGS] = {
-    [DEFAULT_TAGS] = {"1", "2", "3", "4", "5", "6", "7", "8", "9"},
-    [ALTERNATIVE_TAGS] = {"", "", "", "", "", "", "", "", ""},
+    [DEFAULT_TAGS] = {"", "", "", "", "", "", "", "", ""},
+    [ALTERNATIVE_TAGS] = {"1", "2", "3", "4", "5", "6", "7", "8", "9"},
     [ALT_TAGS_DECORATION] = {"", "", "", "", "", "", "", "", ""},
 };
 
@@ -874,7 +873,7 @@ static const Layout layouts[] = {
 #endif // STACKER_PATCH
 
 #if BAR_HOLDBAR_PATCH
-#define HOLDKEY 0 // replace 0 with the keysym to activate holdbar
+#define HOLDKEY  XK_Alt_L // replace 0 with the keysym to activate holdbar
 #endif            // BAR_HOLDBAR_PATCH
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
@@ -907,6 +906,7 @@ static const char *rofi[] = {"rofi",        "-combi-modi", "drun,run,ssh",
                              "hack 10",     "-show",       "combi",
                              "-icon-theme", "Papirus",     "-show-icons"};
 static const char *telegram[] = {"telegram-desktop", NULL};
+static const char *unchromium[] = {"ungoogled-chromium", NULL};
 static const char *termcmd[] = {"alacritty", NULL};
 static const char *librewolf[] = {"librewolf", NULL};
 static const char *hexchat[] = {"hexchat", NULL};
@@ -970,7 +970,7 @@ static Key keys[] = {
     {MODKEY, XK_Escape, setkeymode, {.ui = COMMANDMODE}},
 #endif // KEYMODES_PATCH
     {MODKEY, XK_p, spawn, {.v = rofi}}, {MODKEY, XK_w, spawn, {.v = telegram}},
-    {MODKEY, XK_s, spawn, {.v = librewolf}},
+    {MODKEY, XK_s, spawn, {.v = librewolf}},{MODKEY, XK_q, spawn, {.v = unchromium}},
     {MODKEY | ShiftMask, XK_Return, spawn, {.v = termcmd}},
     {MODKEY, XK_b, togglebar, {0}},
     {MODKEY | ShiftMask, XK_s, spawn, {.v = surf}},
@@ -1095,7 +1095,7 @@ static Key keys[] = {
     {MODKEY | Mod4Mask | ShiftMask, XK_8, incrohgaps, {.i = -1}},
     {MODKEY | Mod4Mask | ControlMask, XK_9, incrovgaps, {.i = +1}},
     {MODKEY | Mod4Mask | ShiftMask, XK_9, incrovgaps, {.i = -1}},
-    {MODKEY, XK_g, togglegaps, {0}},
+    {MODKEY, XK_r, togglegaps, {0}},
     {MODKEY | Mod4Mask | ShiftMask, XK_0, defaultgaps, {0}},
 #endif // VANITYGAPS_PATCH
     {MODKEY, XK_Tab, view, {0}},
