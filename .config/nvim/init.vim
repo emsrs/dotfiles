@@ -5,33 +5,27 @@ call plug#begin()
   Plug 'neoclide/coc.nvim'
   Plug 'dense-analysis/ale'
   Plug 'itchyny/lightline.vim' 
-  Plug 'joshdick/onedark.vim'
   Plug 'sheerun/vim-polyglot'
   Plug 'mhinz/vim-startify'
-  Plug 'voldikss/vim-floaterm'
   Plug 'ryanoasis/vim-devicons'
   Plug 'maximbaz/lightline-ale'
   Plug 'frazrepo/vim-rainbow'
   Plug 'jiangmiao/auto-pairs'
-  Plug 'preservim/nerdcommenter'
-  Plug 'morhetz/gruvbox'
-  Plug 'sainnhe/sonokai'
-  Plug 'jnurmine/Zenburn'
   Plug 'frankier/neovim-colors-solarized-truecolor-only'
-  Plug 'jceb/vim-orgmode'
   Plug 'liuchengxu/vim-which-key'
   Plug 'mengelbrecht/lightline-bufferline'
-  Plug 'kaicataldo/material.vim', { 'branch': 'main' }
-  Plug 'ayu-theme/ayu-vim'
+  Plug 'sainnhe/gruvbox-material'
+  Plug 'junegunn/goyo.vim'
+  Plug 'vimlab/split-term.vim'
 call plug#end()
 "}}}
 "{{{Basic Config
 "basic config
+nmap <silent> <space>' :15 Term <CR>
 nnoremap <silent> <Space> :WhichKey '<Space>'<CR>
 set termguicolors
 let ayucolor="light"
-colorscheme ayu
-set background=light
+colorscheme gruvbox-material
 set nu rnu
 set so=81
 set guicursor=n-v-c-sm:block,i-ci-ve:hor10,r-cr-o:hor20
@@ -42,8 +36,11 @@ set guifont=OperatorMonoNerdFontMono:h20
 
 "}}}
 "{{{Key mappings
+" Goyo
+nmap <space>c :Goyo 130 <CR>
+" Save
+nmap <silent> <C-s> :update <CR>
 "Term
-nmap <silent> <Space>' :FloatermNew --height=0.8 --width=0.6 --wintype=floating --name=floaterm1 --position=center <CR>
 "Explorer
 nmap <space>e :CocCommand explorer --preset simplify<CR>
 "tabs
@@ -117,8 +114,6 @@ let g:coc_explorer_global_presets = {
 "{{{lightline
 let g:lightline = { 
        \ 'colorscheme': 'one',
-       \ 'separator': { 'left': "\uE0B8", 'right': "\" },
-       \ 'subseparator': { 'left': "", 'right': "\ue0b3" },
        \ 'component_function': {
        \   'filetype': 'MyFiletype',
        \   'fileformat': 'MyFileformat',
@@ -331,3 +326,4 @@ let g:NERDToggleCheckAllLines = 1
 "{{{ Statify
 let g:startify_bookmarks = [ '~/projects', '~/dwm-ipc/', '~/.config/nvim/init.vim', '~/.config/picom.conf', '~/.config/polybar/config' ]
 "}}}
+"
