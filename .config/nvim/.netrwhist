@@ -1,5 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =3
-let g:netrw_dirhist_3='/home/deluxe/.config/mpd'
-let g:netrw_dirhist_2='/home/deluxe/.config/rofi'
-let g:netrw_dirhist_1='/home/deluxe/dwm-ipc'
