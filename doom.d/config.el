@@ -9,7 +9,13 @@
 (setq user-full-name "John Doe"
       user-mail-address "john@doe.com")
 
+(setq vterm-shell "/bin/zsh")
 (setq confirm-kill-emacs nil)
+(setq rustic-lsp-server 'rust-analyzer)
+
+(setq deft-directory "~/notes"
+      deft-recursive t)
+
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:
 ;;
@@ -23,13 +29,12 @@
 (setq doom-font (font-spec :family "Iosevka" :size 18 :weight 'semi-light)
       doom-variable-pitch-font (font-spec :family "sans" :size 20))
 (custom-set-faces!
-  '(font-lock-comment-face :slant italic)
-  '(font-lock-keyword-face :slant italic))
+  '(font-lock-comment-face :slant italic))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-one)
+(setq doom-theme 'doom-solarized-dark)
 
 (after! doom-themes
   (setq doom-themes-enable-bold t
