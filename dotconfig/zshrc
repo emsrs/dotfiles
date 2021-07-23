@@ -1,0 +1,13 @@
+# Greeting
+pfetch
+
+# Prompt
+git_branch() {
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/─────[\1]/'
+}
+precmd() {print -rP "%F{red}┌─[%f%T%F{red}]─────[%f%2~%F{red}]$(git_branch)%f"}
+PS1='%F{red}└───────►%f '
+
+# Alias
+alias ls="exa -l --icons"
+alias lsa="exa -la --icons"
