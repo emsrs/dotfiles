@@ -11,6 +11,8 @@ def privacy():
         c.content.notifications.enabled = False
         c.content.media.audio_video_capture = False
         c.content.mouse_lock = False
+        # tch to enable for current host
+        c.content.cookies.accept = "never"
 
 def preferences():
         c.zoom.default = 140
@@ -31,6 +33,7 @@ def minimize_finger_printing():
         c.content.headers.custom = {"accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"}
         c.content.canvas_reading = False
         c.content.webgl = False
+
 
 
 
